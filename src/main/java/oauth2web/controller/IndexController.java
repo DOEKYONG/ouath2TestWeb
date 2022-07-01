@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class IndexController {
@@ -31,6 +32,12 @@ public class IndexController {
     public String signupcontroller(MemberDto memberDto) {
         indexService.signup(memberDto); // indexservice에서 signup 실행
         return "redirect:/"; // 처음화면으로 반환
+    }
+
+    @GetMapping("/member/info") // url 정의
+    @ResponseBody // 객체반환
+    public String memberifo() {
+        return indexService.인증된회원아이디호출();
     }
 
 

@@ -31,7 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf() // csrf : 사이트 간 요청 위조 [ 해킹 공격 방법중 하나 ] = 서버에게 요청할수 있는 페이지 제한
                 //csrf 예외처리
                 .ignoringAntMatchers("/member/logincontroller")
-                .ignoringAntMatchers("/member/signupcontroller");
+                .ignoringAntMatchers("/member/signupcontroller")
+                .and()
+                .oauth2Login()// oauth2로그인 설정
+                .userInfoEndpoint()//유저정보 위치
+                .userService(indexService); // 유저정보 받기
     }
     @Autowired
     private IndexService indexService;
